@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerSpace | Mini-Games Hub</title>
+    <meta name="description" content="A premium mini-games collection featuring Dino Run and Flappy Bird.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter and Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        if (sessionStorage.getItem('hubEntered') === 'true' || window.location.search.includes('skipLanding=true')) {
+            document.documentElement.classList.add('skip-landing');
+        }
+    </script>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing-page" class="landing-page">
+        <div class="landing-container">
+            <h1 class="landing-title">Welcome to GamerSpace</h1>
+            <p class="landing-subtitle">The ultimate high-performance mini-game collection.</p>
+            
+            <div class="games-info-grid">
+                <div class="info-section">
+                    <h3>🟢 Available Games</h3>
+                    <ul>
+                        <li><span class="icon">🏃</span> <strong>Rohith Run:</strong> Endless prehistoric dodging.</li>
+                        <li><span class="icon">🐦</span> <strong>Mini Flappy:</strong> Precision glassmorphic flapper.</li>
+                    </ul>
+                </div>
+                <div class="info-section">
+                    <h3>🚀 Upcoming Titles</h3>
+                    <ul>
+                        <li><span class="icon">🏎️</span> <strong>Neon Drift:</strong> High-speed synthwave racing.</li>
+                        <li><span class="icon">⚔️</span> <strong>Blade Core:</strong> Cyberpunk rhythm slasher.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <button id="enter-hub-btn" class="enter-btn">
+                Enter the gaming hub <span class="arrow">→</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen hidden">
+        <div class="loader-content">
+            <span class="icon" style="font-size: 4rem; display: block; margin-bottom: 16px; animation: bounce 1s infinite alternate;">🎮</span>
+            <h1 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; background: linear-gradient(135deg, #fff 0%, #94a3b8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">Loading GamerSpace...</h1>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="glass-background"></div>
+    
+    <div class="hub-container">
+        <header class="hub-header">
+            <div class="logo" style="justify-content: center; margin-bottom: 24px;">
+                <span class="icon" style="font-size: 2.5rem;">🎮</span>
+                <h1 style="background: none; -webkit-text-fill-color: currentColor;">GamerSpace</h1>
+            </div>
+            <h1>Pick Your Adventure</h1>
+            <p>High-performance mini-games powered by WebAssembly.</p>
+        </header>
+
+        <main class="games-grid">
+            <!-- Dino Run -->
+            <a href="play.html?game=dino" class="game-card">
+                <span class="badge">Trending</span>
+                <span class="card-icon">🏃</span>
+                <h3>Rohith Run</h3>
+                <p>An endless runner where you dodge prehistoric obstacles. Features dynamic difficulty and day/night cycles.</p>
+                <div class="play-button">Launch Game</div>
+            </a>
+
+            <!-- Flappy Bird -->
+            <a href="play.html?game=flappy" class="game-card">
+                <span class="card-icon">🐦</span>
+                <h3>Mini Flappy</h3>
+                <p>Test your reflexes in this precision flapper. Beautifully rendered with glassmorphic obstacles.</p>
+                <div class="play-button">Launch Game</div>
+            </a>
+        </main>
+
+        <footer style="margin-top: 80px; color: var(--text-secondary); font-size: 0.9rem;">
+            <p>&copy; 2026 GamerSpace | Built for Advanced Agentic Coding</p>
+        </footer>
+    </div>
+
+    <!-- Background Decoration -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const landingPage = document.getElementById('landing-page');
+            const loader = document.getElementById('loading-screen');
+            const enterBtn = document.getElementById('enter-hub-btn');
+
+            // Check if user has already entered the hub during this session
+            // or if a URL parameter indicates we should skip it
+            const skipLanding = sessionStorage.getItem('hubEntered') === 'true' || window.location.search.includes('skipLanding=true');
+
+            if (skipLanding) {
+                // Instantly hide the landing page and the loading screen to show the hub
+                if (landingPage) landingPage.classList.add('hidden');
+                if (loader) loader.classList.add('hidden');
+                // Ensure the flag is set just in case it came from URL param
+                sessionStorage.setItem('hubEntered', 'true');
+            } else {
+                if (enterBtn && landingPage && loader) {
+                    enterBtn.addEventListener('click', () => {
+                        sessionStorage.setItem('hubEntered', 'true');
+                        // Hide landing page
+                        landingPage.classList.add('hidden');
+                        // Show loading screen
+                        loader.classList.remove('hidden');
+
+                        // After 3 seconds, hide loading screen to reveal main hub
+                        setTimeout(() => {
+                            loader.classList.add('hidden');
+                        }, 3000);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

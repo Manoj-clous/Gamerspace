@@ -1,0 +1,25 @@
+{
+  "name": "gamerspace-hub",
+  "version": "1.0.0",
+  "description": "Premium Mini-Games Hub with WebAssembly Engine",
+  "main": "main.js",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "make"
+  },
+  "keywords": [
+    "games",
+    "wasm",
+    "hub"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "cross-env": "^10.1.0",
+    "express": "^5.2.1"
+  }
+}
